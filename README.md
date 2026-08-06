@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Book My Stay — Local Auth Server
 
 This adds a simple Node.js + SQLite server to handle user registration and login for the sample pages.
@@ -28,3 +29,7 @@ Notes:
 - Passwords are hashed using bcrypt.
 - The database file `auth.db` is created in the workspace root.
 - For production use, add HTTPS, CSRF protection, sessions or JWTs, and a proper user flow.
+=======
+# Book-My-Stay
+Major Project
+>>>>>>> 33cfc5736415e649e385d59b70e7472153402b5f
