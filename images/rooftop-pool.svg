@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe47a"/>
+      <stop offset="100%" stop-color="#ff7a7a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="900" fill="#2c1a45"/>
+  <rect x="0" y="0" width="1400" height="900" fill="url(#g3)" opacity="0.5"/>
+  <text x="50%" y="44%" text-anchor="middle" font-family="Inter, sans-serif" font-size="72" fill="#ffffff">Rooftop Pool</text>
+  <text x="50%" y="54%" text-anchor="middle" font-family="Inter, sans-serif" font-size="38" fill="#ffecec">Infinity View</text>
+</svg>
