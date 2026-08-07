@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Confirmed</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+
+    background:linear-gradient(-45deg,#0f2027,#2c3e50,#6a11cb,#ff4fd8,#4f8dff);
+    background-size:400% 400%;
+    animation:gradient 12s ease infinite;
+}
+
+@keyframes gradient{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.card{
+    width:430px;
+    padding:40px 35px;
+    text-align:center;
+
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:30px;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.35),
+    inset 0 0 20px rgba(255,255,255,.08);
+
+    animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+.check{
+    width:90px;
+    height:90px;
+    margin:auto;
+    border-radius:50%;
+    background:linear-gradient(135deg,#00e676,#00c853);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:48px;
+    box-shadow:0 0 25px rgba(0,255,120,.6);
+}
+
+h1{
+    margin-top:25px;
+    font-family:'Great Vibes',cursive;
+    font-size:62px;
+    color:white;
+    text-shadow:
+    0 0 15px #ff4fd8,
+    0 0 25px #4f8dff;
+}
+
+.subtitle{
+    margin-top:10px;
+    color:#ffe8ff;
+    font-size:20px;
+    font-weight:600;
+}
+
+.message{
+    margin-top:20px;
+    color:white;
+    font-size:17px;
+    line-height:1.8;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:35px;
+    padding:15px 45px;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    font-size:18px;
+    border-radius:40px;
+
+    background:linear-gradient(90deg,#ff4fd8,#4f8dff);
+
+    transition:.4s;
+}
+
+.btn:hover{
+    transform:translateY(-5px) scale(1.05);
+    box-shadow:0 0 25px #ff4fd8;
+}
+
+.footer{
+    margin-top:25px;
+    color:#ddd;
+    font-size:14px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="check">✓</div>
+
+<h1>Your Stay is Confirmed</h1>
+
+<p class="subtitle">
+Payment Completed Successfully
+</p>
+
+<p class="message">
+Thank you for choosing <b>Book My Stay</b>.<br><br>
+
+Your reservation has been successfully confirmed.<br>
+We look forward to welcoming you and ensuring you have a relaxing, comfortable, and unforgettable stay.
+</p>
+
+<a href="index.html" class="btn">
+🏠 Return to Home
+</a>
+
+<div class="footer">
+© 2026 Book My Stay • Wishing You a Pleasant Journey
+</div>
+
+</div>
+
+</body>
+</html>

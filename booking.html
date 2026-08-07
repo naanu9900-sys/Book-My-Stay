@@ -1,277 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hotels — Book my stay</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg: linear-gradient(180deg,#0f172a 0%, #111827 100%);
-      --card: rgba(255,255,255,0.04);
-      --accent: #f7be55;
-      --text: #eef2ff;
-      --muted: #9aa4b2;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Inter, system-ui, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      min-height:100vh;
-    }
-    .wrap{max-width:1200px;margin:40px auto;padding:24px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}
-    header h1{font-family:'Playfair Display',serif;font-size:2rem;margin:0}
-    header p{color:var(--muted);margin:0}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-    .card{background:var(--card);border-radius:12px;overflow:hidden;position:relative;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
-    .card img{width:100%;height:220px;object-fit:cover;display:block;cursor:pointer;transition:transform .35s}
-    .card img:hover{transform:scale(1.03)}
-    .card .meta{padding:14px}
-    .card .title{font-weight:600;margin:0 0 6px}
-    .card .loc{color:var(--muted);font-size:0.9rem;margin-bottom:10px}
-    .card .actions{display:flex;gap:8px}
-    .btn{padding:8px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:600;position:relative;overflow:hidden;transition:transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease}
-    .btn-primary{background:var(--accent);color:#fff;box-shadow:0 12px 24px rgba(247,190,85,0.16)}
-    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
-    .btn:hover{transform:translateY(-1px)}
-    .btn:active{transform:scale(0.97)}
-    .btn-ghost:hover{background:rgba(255,255,255,0.08)}
-    .ripple{position:absolute;border-radius:50%;transform:scale(0);background:rgba(255,255,255,0.35);animation:ripple 0.6s ease-out;pointer-events:none}
-    @keyframes ripple{to{transform:scale(4);opacity:0}}
-
-    /* Lightbox */
-    #lightbox{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);opacity:0;pointer-events:none;transition:opacity .2s}
-    #lightbox.open{opacity:1;pointer-events:auto}
-    #lightbox img{max-width:85%;max-height:85%;border-radius:10px;box-shadow:0 25px 60px rgba(2,6,23,0.8)}
-    #closeLb{position:fixed;right:28px;top:28px;background:rgba(0,0,0,0.5);border:0;color:#fff;padding:8px 10px;border-radius:8px;cursor:pointer}
-    
-    /* Payment modal */
-    #paymentModal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.65);opacity:0;pointer-events:none;transition:opacity .18s}
-    #paymentModal.open{opacity:1;pointer-events:auto}
-    .pm-card{width:92%;max-width:560px;background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02));border-radius:16px;padding:20px;color:var(--text);box-shadow:0 30px 80px rgba(2,6,23,0.75);border:1px solid rgba(168,85,247,0.12);backdrop-filter:blur(6px)}
-    .pm-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-    .pm-title{font-family:'Playfair Display',serif;font-size:1.25rem;margin:0}
-    .pm-body{margin-top:8px}
-    .methods{display:flex;flex-direction:column;gap:10px;margin:14px 0}
-    .method{display:flex;align-items:center;gap:14px;background:linear-gradient(90deg, rgba(168,85,247,0.06), rgba(255,255,255,0.02));padding:14px 16px;border-radius:12px;border:2px solid rgba(168,85,247,0.16);box-shadow:0 10px 30px rgba(168,85,247,0.06);font-weight:700;font-size:1rem}
-    .method input[type="radio"]{transform:scale(1.25);accent-color:var(--accent);width:18px;height:18px}
-    .pm-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:14px}
-    .pm-input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:var(--text);font-weight:600}
-
-    @media (max-width:520px){.card img{height:160px}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="wrap">
-    <header>
-      <div>
-        <h1>Find your perfect stay</h1>
-        <p>Curated hotels with beautiful views — tap an image to preview</p>
-      </div>
-      <div>
-        <button class="btn btn-ghost" onclick="window.location.href='login page.html'">Logout</button>
-      </div>
-    </header>
 
-    <section class="grid">
-      <article class="card">
-        <img src="images/ocean-view.svg" alt="Luxury room" onclick="openLightbox(this.src)">
-        <div class="meta">
-          <h3 class="title">Ocean View Luxury Suite</h3>
-          <div class="loc">Malibu, USA</div>
-          <div class="actions">
-            <button class="btn btn-primary" onclick="book('Ocean View Luxury Suite')">Book</button>
-            <button class="btn btn-ghost" onclick="openLightbox('images/ocean-view.svg')">Preview</button>
-          </div>
-        </div>
-      </article>
+<header>
+<h1>🏨 Book My Stay</h1>
 
-      <article class="card">
-        <img src="images/grand-lobby.svg" alt="Hotel lobby" onclick="openLightbox(this.src)">
-        <div class="meta">
-          <h3 class="title">Grand Lobby Hotel</h3>
-          <div class="loc">Paris, France</div>
-          <div class="actions">
-            <button class="btn btn-primary" onclick="book('Grand Lobby Hotel')">Book</button>
-            <button class="btn btn-ghost" onclick="openLightbox('images/grand-lobby.svg')">Preview</button>
-          </div>
-        </div>
-      </article>
+<nav>
+<a href="index.html">Home</a>
+<a href="rooms.html">Rooms</a>
+<a href="booking.html">Booking</a>
+<a href="profile.html">Profile</a>
+<a href="login.html">Login</a>
+</nav>
+</header>
 
-      <article class="card">
-        <img src="images/rooftop-pool.svg" alt="Poolside" onclick="openLightbox(this.src)">
-        <div class="meta">
-          <h3 class="title">Rooftop Infinity Pool</h3>
-          <div class="loc">Bangkok, Thailand</div>
-          <div class="actions">
-            <button class="btn btn-primary" onclick="book('Rooftop Infinity Pool')">Book</button>
-            <button class="btn btn-ghost" onclick="openLightbox('images/rooftop-pool.svg')">Preview</button>
-          </div>
-        </div>
-      </article>
+<section style="padding:40px;max-width:600px;margin:auto;">
+<h2>Book Your Room</h2>
 
-      <article class="card">
-        <img src="images/cozy-suite.svg" alt="Cozy suite" onclick="openLightbox(this.src)">
-        <div class="meta">
-          <h3 class="title">Cozy Mountain Suite</h3>
-          <div class="loc">Aspen, USA</div>
-          <div class="actions">
-            <button class="btn btn-primary" onclick="book('Cozy Mountain Suite')">Book</button>
-            <button class="btn btn-ghost" onclick="openLightbox('images/cozy-suite.svg')">Preview</button>
-          </div>
-        </div>
-      </article>
+<form id="bookingForm">
 
-      <article class="card">
-        <img src="images/sunset-terrace.svg" alt="Sunset terrace" onclick="openLightbox(this.src)">
-        <div class="meta">
-          <h3 class="title">Sunset Terrace Hotel</h3>
-          <div class="loc">Santorini, Greece</div>
-          <div class="actions">
-            <button class="btn btn-primary" onclick="book('Sunset Terrace Hotel')">Book</button>
-            <button class="btn btn-ghost" onclick="openLightbox('images/sunset-terrace.svg')">Preview</button>
-          </div>
-        </div>
-      </article>
+<label>Full Name</label><br>
+<input type="text" placeholder="Enter your name" required><br><br>
 
-      <article class="card">
-        <img src="images/boutique-city.svg" alt="Boutique hotel" onclick="openLightbox(this.src)">
-        <div class="meta">
-          <h3 class="title">Boutique City Hotel</h3>
-          <div class="loc">Tokyo, Japan</div>
-          <div class="actions">
-            <button class="btn btn-primary" onclick="book('Boutique City Hotel')">Book</button>
-            <button class="btn btn-ghost" onclick="openLightbox('images/boutique-city.svg')">Preview</button>
-          </div>
-        </div>
-      </article>
+<label>Email</label><br>
+<input type="email" placeholder="Enter your email" required><br><br>
 
-    </section>
-  </div>
+<label>Room Type</label><br>
+<select>
+<option>Deluxe Room</option>
+<option>Luxury Suite</option>
+<option>Family Room</option>
+</select><br><br>
 
-  <!-- Payment modal -->
-  <div id="paymentModal" onclick="closePayment(event)">
-    <div class="pm-card" onclick="event.stopPropagation()">
-      <div class="pm-header">
-        <div>
-          <div class="pm-title">Complete your booking</div>
-          <div style="color:var(--muted);font-size:0.95rem" id="pmHotel"> </div>
-        </div>
-        <button style="background:transparent;border:0;color:var(--text);font-weight:700;cursor:pointer" onclick="closePayment(event)">✕</button>
-      </div>
+<label>Check-In Date</label><br>
+<input type="date" required><br><br>
 
-      <div class="pm-body">
-        <label style="color:var(--muted);font-size:0.9rem">Choose a payment method</label>
-        <div class="methods">
-          <label class="method"><input type="radio" name="payMethod" value="Card" checked> Credit/Debit Card</label>
-          <label class="method"><input type="radio" name="payMethod" value="PayPal"> PayPal</label>
-          <label class="method"><input type="radio" name="payMethod" value="Apple Pay"> Apple Pay</label>
-        </div>
+<label>Check-Out Date</label><br>
+<input type="date" required><br><br>
 
-        <div id="cardFields">
-          <input class="pm-input" id="cardName" placeholder="Name on card" />
-          <input class="pm-input" id="cardNumber" placeholder="Card number" style="margin-top:8px" />
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <input class="pm-input" id="cardExp" placeholder="MM/YY" />
-            <input class="pm-input" id="cardCVC" placeholder="CVC" />
-          </div>
-        </div>
+<label>Guests</label><br>
+<input type="number" min="1" max="10" value="1"><br><br>
 
-        <div class="pm-actions">
-          <button class="btn btn-ghost" onclick="closePayment(event)">Cancel</button>
-          <button class="btn btn-primary" onclick="doPayment(event)">Pay</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<button class="btn" type="submit">Confirm Booking</button>
 
-  <div id="lightbox" onclick="closeLightbox(event)">
-    <button id="closeLb" onclick="closeLightbox(event)">Close</button>
-    <img id="lbImg" src="" alt="Preview">
-  </div>
+</form>
 
-  <script>
-    // No remote image loading needed; using local SVG hotel illustrations.
+</section>
+<script>
+document.getElementById("bookingForm").addEventListener("submit", async function(e){
+    e.preventDefault();
 
-    function openLightbox(src){
-      var lb=document.getElementById('lightbox');
-      var img=document.getElementById('lbImg');
-      img.src=src;
-      lb.classList.add('open');
-    }
-    function closeLightbox(e){
-      if(e) e.stopPropagation();
-      var lb=document.getElementById('lightbox');
-      lb.classList.remove('open');
-      document.getElementById('lbImg').src='';
-    }
+    const form = e.target;
 
-    function attachButtonAnimation(){
-      document.querySelectorAll('.btn').forEach(button => {
-        button.addEventListener('click', function(e){
-          const rect = button.getBoundingClientRect();
-          const ripple = document.createElement('span');
-          const size = Math.max(rect.width, rect.height);
-          ripple.className = 'ripple';
-          ripple.style.width = ripple.style.height = size + 'px';
-          ripple.style.left = e.clientX - rect.left - size/2 + 'px';
-          ripple.style.top = e.clientY - rect.top - size/2 + 'px';
-          button.appendChild(ripple);
-          setTimeout(() => ripple.remove(), 600);
+    const booking = {
+        name: form.elements[0].value,
+        email: form.elements[1].value,
+        room: form.elements[2].value,
+        checkin: form.elements[3].value,
+        checkout: form.elements[4].value,
+        guests: form.elements[5].value,
+        amount: 5000
+    };
+
+    try {
+        const res = await fetch("/save-booking", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(booking)
         });
-      });
-    }
 
-    document.addEventListener('DOMContentLoaded', attachButtonAnimation);
+        const data = await res.json();
 
-    function book(name){
-      openPayment(name);
-    }
-
-    function openPayment(name){
-      document.getElementById('pmHotel').textContent = name;
-      document.getElementById('paymentModal').classList.add('open');
-      // show/hide card fields based on method
-      updatePaymentFields();
-      // attach change listeners
-      var radios = document.querySelectorAll('input[name="payMethod"]');
-      radios.forEach(r=>r.onchange = updatePaymentFields);
-    }
-
-    function closePayment(e){
-      if(e) e.stopPropagation();
-      document.getElementById('paymentModal').classList.remove('open');
-    }
-
-    function updatePaymentFields(){
-      var method = document.querySelector('input[name="payMethod"]:checked').value;
-      var cardFields = document.getElementById('cardFields');
-      if(method === 'Card') cardFields.style.display = 'block';
-      else cardFields.style.display = 'none';
-    }
-
-    function doPayment(e){
-      e && e.stopPropagation();
-      var method = document.querySelector('input[name="payMethod"]:checked').value;
-      var hotel = document.getElementById('pmHotel').textContent;
-      // basic validation when card selected
-      if(method === 'Card'){
-        var name = document.getElementById('cardName').value.trim();
-        var number = document.getElementById('cardNumber').value.trim();
-        if(!name || !number){
-          alert('Please enter card name and number');
-          return;
+        if (data.success) {
+            alert("🎉 Booking Successful!");
+            window.location.href = "payment.html";
+        } else {
+            alert("Booking failed!");
         }
-      }
-      // simulate payment success
-      closePayment();
-      alert('Payment successful for "' + hotel + '" via ' + method + '.');
+    } catch (err) {
+        console.error(err);
+        alert("Server error!");
     }
-  </script>
+});
+</script>
 </body>
 </html>

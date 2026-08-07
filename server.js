@@ -32,6 +32,19 @@ db.serialize(() => {
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `);
+  db.run(`
+CREATE TABLE IF NOT EXISTS bookings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    email TEXT,
+    room TEXT,
+    checkin TEXT,
+    checkout TEXT,
+    guests INTEGER,
+    amount REAL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+)
+`);
 });
 
 // Register endpoint (for creating test users)
@@ -65,8 +78,31 @@ app.post('/login', (req, res) => {
     res.json({ success: true, message: 'Login successful' });
   });
 });
+// Save booking endpoint
+app.post('/save-booking', (req, res) => {
+  const { name, email, room, checkin, checkout, guests, amount } = req.body;
+  db.run(
+  `INSERT INTO bookings
+  (name, email, room, checkin, checkout, guests, amount)
+  VALUES (?, ?, ?, ?, ?, ?, ?)`,
+  [name, email, room, checkin, checkout, guests, amount],
+  function(err) {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        message: "DB error"
+      });
+    }
 
+    res.json({
+      success: true,
+      id: this.lastID
+    });
+  }
+);
+});
 app.listen(PORT, () => {
+  
   console.log(`Server running at http://localhost:${PORT}/`);
   console.log('Open login page at: http://localhost:' + PORT + '/login%20page.html');
 });

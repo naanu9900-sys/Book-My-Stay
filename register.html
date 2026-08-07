@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+</head>
+<body>
+  <h2>Create Account</h2>
+
+  <form id="registerForm">
+    <input type="email" id="email" placeholder="Email" required><br><br>
+
+    <input type="password" id="password" placeholder="Password" required><br><br>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <p><a href="login.html">Back to Login</a></p>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", async function(e){
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const res = await fetch("/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+
+      if(data.success){
+        alert("Registration successful!");
+        window.location.href = "login.html";
+      } else {
+        alert(data.message);
+      }
+    });
+  </script>
+</body>
+</html>
