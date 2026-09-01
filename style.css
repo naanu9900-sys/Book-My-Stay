@@ -78,3 +78,308 @@ footer{
     text-align:center;
     padding:20px;
 }
+/* =====================================================
+   STAYBOT CHATBOT
+   ===================================================== */
+
+#staybot-container {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+}
+
+/* Chat Button */
+
+#staybot-button {
+    width: 65px;
+    height: 65px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff3d81, #5548ff);
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+#staybot-button:hover {
+    transform: scale(1.08);
+}
+
+/* Chat Window */
+
+#staybot-window {
+    display: none;
+
+    position: absolute;
+    right: 0;
+    bottom: 80px;
+
+    width: 370px;
+    height: 550px;
+
+    background: linear-gradient(
+        180deg,
+        #2d1457,
+        #5119a8,
+        #27115c
+    );
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    box-shadow: 0 15px 45px rgba(0,0,0,0.4);
+
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Header */
+
+.staybot-header {
+    height: 80px;
+
+    background: linear-gradient(
+        135deg,
+        #ff386f,
+        #8c27d9,
+        #345cff
+    );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 20px;
+
+    box-sizing: border-box;
+}
+
+.staybot-header strong {
+    display: block;
+    font-size: 20px;
+}
+
+.staybot-header small {
+    display: block;
+    margin-top: 5px;
+    color: #d8ffd8;
+}
+
+.staybot-close {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Messages */
+
+#staybot-messages {
+    height: 345px;
+
+    padding: 18px;
+
+    overflow-y: auto;
+
+    box-sizing: border-box;
+}
+
+/* Bot Message */
+
+.bot-message {
+    background: rgba(255,255,255,0.14);
+
+    color: white;
+
+    padding: 13px 16px;
+
+    border-radius: 15px 15px 15px 3px;
+
+    margin-bottom: 12px;
+
+    max-width: 85%;
+
+    line-height: 1.5;
+
+    font-size: 14px;
+}
+
+/* User Message */
+
+.user-message {
+    background: linear-gradient(
+        135deg,
+        #ff3d81,
+        #e9319d
+    );
+
+    color: white;
+
+    padding: 12px 15px;
+
+    border-radius: 15px 15px 3px 15px;
+
+    margin-bottom: 12px;
+
+    max-width: 80%;
+
+    margin-left: auto;
+
+    line-height: 1.5;
+
+    font-size: 14px;
+}
+
+/* Links inside bot */
+
+.bot-message a {
+    color: #ffffff;
+
+    font-weight: bold;
+
+    text-decoration: underline;
+}
+
+.bot-message a:hover {
+    color: #ffd4e8;
+}
+
+/* Quick Buttons */
+
+.staybot-quick-buttons {
+    display: flex;
+
+    gap: 6px;
+
+    padding: 8px 12px;
+
+    overflow-x: auto;
+}
+
+.staybot-quick-buttons button {
+    flex-shrink: 0;
+
+    border: 1px solid rgba(255,255,255,0.3);
+
+    background: rgba(255,255,255,0.15);
+
+    color: white;
+
+    padding: 8px 11px;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+}
+
+.staybot-quick-buttons button:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* Input */
+
+.staybot-input-area {
+    position: absolute;
+
+    bottom: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 65px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 10px;
+
+    box-sizing: border-box;
+
+    background: rgba(0,0,0,0.15);
+}
+
+#staybot-input {
+    flex: 1;
+
+    height: 45px;
+
+    border: none;
+
+    outline: none;
+
+    border-radius: 25px;
+
+    padding: 0 16px;
+
+    font-size: 14px;
+
+    background: rgba(255,255,255,0.9);
+
+    color: #222;
+}
+
+.staybot-input-area button {
+    width: 45px;
+
+    height: 45px;
+
+    margin-left: 8px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #ff3d81,
+        #7148ff
+    );
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+/* Scrollbar */
+
+#staybot-messages::-webkit-scrollbar {
+    width: 5px;
+}
+
+#staybot-messages::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.4);
+
+    border-radius: 10px;
+}
+
+/* Mobile */
+
+@media (max-width: 500px) {
+
+    #staybot-container {
+        right: 15px;
+        bottom: 15px;
+    }
+
+    #staybot-window {
+        width: calc(100vw - 30px);
+        height: 520px;
+        right: -5px;
+    }
+
+}

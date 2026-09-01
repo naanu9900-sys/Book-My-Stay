@@ -1,43 +1,2071 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book My Stay</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Book My Stay</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #111;
+            color: white;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .logo span {
+            color: #ff3d81;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            color: #ff4d91;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+
+            padding: 100px 8%;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,0.48),
+                    rgba(0,0,0,0.65)
+                ),
+                url("https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1800&q=80");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 76px);
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #ff3d81;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #eee;
+            margin-bottom: 30px;
+        }
+
+        .hero-button {
+            display: inline-block;
+
+            padding: 15px 28px;
+
+            border-radius: 30px;
+
+            background: linear-gradient(
+                135deg,
+                #ff3d51,
+                #ff2d91
+            );
+
+            color: white;
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition: 0.25s;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section {
+            padding: 90px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 38px;
+            margin-bottom: 45px;
+        }
+
+        .section-title span {
+            color: #ff3d81;
+        }
+
+
+        /* =========================
+           ROOMS
+        ========================= */
+
+        #rooms {
+            background: #151515;
+        }
+
+        .rooms-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 25px;
+
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .room-card {
+            background: #222;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 35px rgba(0,0,0,0.25);
+
+            transition: 0.25s;
+        }
+
+        .room-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .room-image {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .room-content {
+            padding: 23px;
+        }
+
+        .room-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #ffe000;
+            font-size: 23px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .room-content p {
+            color: #ccc;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .book-button {
+            border: none;
+
+            padding: 11px 18px;
+
+            border-radius: 25px;
+
+            background: linear-gradient(
+                135deg,
+                #ff4141,
+                #ff2383
+            );
+
+            color: white;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           BOOKING
+        ========================= */
+
+        #booking {
+            background:
+                linear-gradient(
+                    135deg,
+                    #30104f,
+                    #130b25
+                );
+        }
+
+        .booking-box {
+            max-width: 850px;
+            margin: auto;
+
+            padding: 35px;
+
+            background: rgba(255,255,255,0.08);
+
+            border-radius: 25px;
+
+            backdrop-filter: blur(10px);
+        }
+
+        .booking-form {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+        .booking-form input,
+        .booking-form select {
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+            outline: none;
+
+            border-radius: 10px;
+
+            background: white;
+            color: #222;
+
+            font-size: 15px;
+        }
+
+        .booking-form .full {
+            grid-column: 1 / -1;
+        }
+
+        .booking-submit {
+            border: none;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            background: #ff3d81;
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           FACILITIES
+        ========================= */
+
+        #facilities {
+            background: #101010;
+        }
+
+        .facilities-grid {
+            max-width: 1000px;
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(200px, 1fr));
+
+            gap: 20px;
+        }
+
+        .facility {
+            padding: 28px;
+
+            text-align: center;
+
+            border-radius: 20px;
+
+            background: #202020;
+
+            font-size: 17px;
+        }
+
+        .facility-icon {
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 30px;
+            text-align: center;
+            background: #080808;
+            color: #aaa;
+        }
+
+
+        /* =====================================================
+           STAYBOT
+        ===================================================== */
+
+        #staybot-open {
+            position: fixed;
+
+            right: 25px;
+            bottom: 25px;
+
+            width: 65px;
+            height: 65px;
+
+            border: none;
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff3d81,
+                    #702cff
+                );
+
+            color: white;
+
+            font-size: 28px;
+
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow:
+                0 10px 35px rgba(0,0,0,0.4);
+
+            z-index: 9998;
+
+            transition: 0.2s;
+        }
+
+        #staybot-open:hover {
+            transform: scale(1.08);
+        }
+
+
+        /* =========================
+           CHAT WINDOW
+        ========================= */
+
+        #staybot-container {
+            position: fixed;
+
+            right: 25px;
+            bottom: 25px;
+
+            width: 390px;
+
+            height: 650px;
+
+            max-width: calc(100vw - 30px);
+            max-height: calc(100vh - 35px);
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #151220,
+                    #5510a9
+                );
+
+            border-radius: 27px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.55);
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            z-index: 9999;
+
+            display: none;
+
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* =========================
+           CHAT HEADER
+        ========================= */
+
+        #staybot-header {
+            height: 82px;
+
+            padding: 0 17px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff4035,
+                    #ff2380,
+                    #5b2cff
+                );
+        }
+
+        .staybot-title-area {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .staybot-title {
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .staybot-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            font-size: 13px;
+        }
+
+        .staybot-status-dot {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #00ff45;
+        }
+
+
+        /* =========================
+           CLOSE BUTTON
+        ========================= */
+
+        #staybot-close {
+            width: 43px;
+            height: 43px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.18);
+
+            color: white;
+
+            font-size: 30px;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            transition: 0.2s;
+        }
+
+        #staybot-close:hover {
+            background: rgba(255,255,255,0.35);
+            transform: scale(1.08);
+        }
+
+
+        /* =========================
+           MESSAGES
+        ========================= */
+
+        #staybot-messages {
+            position: absolute;
+
+            top: 82px;
+            left: 0;
+            right: 0;
+
+            bottom: 125px;
+
+            padding: 18px;
+
+            overflow-y: auto;
+
+            scrollbar-width: thin;
+            scrollbar-color:
+                rgba(255,255,255,0.3)
+                transparent;
+        }
+
+
+        .staybot-message {
+            max-width: 88%;
+
+            margin-bottom: 15px;
+
+            padding: 15px;
+
+            border-radius: 18px;
+
+            color: white;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            word-break: break-word;
+        }
+
+        .staybot-bot {
+            margin-right: auto;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(142,50,255,0.78),
+                    rgba(86,17,183,0.85)
+                );
+
+            border-top-left-radius: 5px;
+        }
+
+        .staybot-user {
+            margin-left: auto;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff405c,
+                    #ff277f
+                );
+
+            border-top-right-radius: 5px;
+        }
+
+
+        /* =========================
+           CHAT ROOM CARDS
+        ========================= */
+
+        .staybot-room-card {
+            margin-top: 12px;
+
+            padding: 15px;
+
+            background: rgba(255,255,255,0.11);
+
+            border-radius: 15px;
+
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .staybot-room-name {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .staybot-room-price {
+            color: #ffe000;
+
+            font-size: 19px;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+        }
+
+        .staybot-room-description {
+            font-size: 13px;
+
+            color: #eee;
+
+            margin-bottom: 12px;
+        }
+
+        .staybot-room-button {
+            border: none;
+
+            padding: 9px 15px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff4b43,
+                    #ff277b
+                );
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           CHAT BOTTOM
+        ========================= */
+
+        #staybot-bottom {
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding: 11px 12px 13px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(86,14,182,0.88),
+                    rgba(71,5,151,1)
+                );
+        }
+
+
+        /* INPUT ROW */
+
+        .staybot-input-row {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 9px;
+        }
+
+        #staybot-input {
+            flex: 1;
+
+            min-width: 0;
+
+            height: 48px;
+
+            border: none;
+            outline: none;
+
+            border-radius: 25px;
+
+            padding: 0 16px;
+
+            background: rgba(255,255,255,0.8);
+
+            color: #222;
+
+            font-size: 14px;
+        }
+
+        #staybot-input::placeholder {
+            color: #555;
+        }
+
+
+        /* SEND */
+
+        #staybot-send {
+            flex: 0 0 48px;
+
+            width: 48px;
+            height: 48px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #ff4a9b;
+
+            color: white;
+
+            font-size: 24px;
+
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #staybot-send:hover {
+            transform: scale(1.06);
+        }
+
+
+        /* QUICK BUTTONS */
+
+        .staybot-quick-actions {
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 6px;
+        }
+
+        .staybot-quick-actions button {
+            height: 42px;
+
+            min-width: 0;
+
+            border: none;
+
+            border-radius: 22px;
+
+            background: rgba(255,255,255,0.16);
+
+            color: white;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+            transition: 0.2s;
+        }
+
+        .staybot-quick-actions button:hover {
+            background: rgba(255,255,255,0.28);
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 0 20px;
+            }
+
+            nav ul {
+                gap: 10px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 100px 25px;
+            }
+
+            section {
+                padding: 70px 20px;
+            }
+
+            .booking-form {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-form .full {
+                grid-column: auto;
+            }
+
+            #staybot-container {
+                right: 10px;
+                bottom: 10px;
+
+                width: calc(100vw - 20px);
+                height: calc(100vh - 20px);
+
+                max-width: none;
+                max-height: none;
+
+                border-radius: 22px;
+            }
+
+            #staybot-open {
+                right: 18px;
+                bottom: 18px;
+            }
+
+            .staybot-quick-actions {
+                gap: 4px;
+            }
+
+            .staybot-quick-actions button {
+                font-size: 10px;
+            }
+        }
+    </style>
 </head>
+
 
 <body>
 
-<header>
-    <h1>🏨 Book My Stay</h1>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="rooms.html">Rooms</a>
-        <a href="booking.html">Booking</a>
-        <a href="profile.html">Profile</a>
-        <a href="login.html">Login</a>
-    </nav>
-</header>
+<!-- =========================
+     NAVIGATION
+========================= -->
 
-<section class="hero">
+<nav>
 
-<h2>Find Your Perfect Stay</h2>
+    <div class="logo">
+        Book <span>My Stay</span>
+    </div>
 
-<p>Luxury hotels at the best prices.</p>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#rooms">Rooms</a></li>
+        <li><a href="#booking">Booking</a></li>
+        <li><a href="#facilities">Facilities</a></li>
+    </ul>
 
-<a href="rooms.html">
-<button class="btn">Book Now</button>
-</a>
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>
+            Find Your
+            <span>Perfect Stay</span>
+        </h1>
+
+        <p>
+            Comfortable rooms, premium facilities
+            and a simple booking experience.
+        </p>
+
+        <a
+            href="#rooms"
+            class="hero-button"
+        >
+            Book Now
+        </a>
+
+    </div>
 
 </section>
 
+
+<!-- =========================
+     ROOMS
+========================= -->
+
+<section id="rooms">
+
+    <h2 class="section-title">
+        Our <span>Rooms</span>
+    </h2>
+
+    <div class="rooms-grid">
+
+
+        <!-- STANDARD -->
+
+        <div class="room-card">
+
+            <img
+                class="room-image"
+                src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=900&q=80"
+                alt="Standard Room"
+            >
+
+            <div class="room-content">
+
+                <h3>
+                    Standard Room
+                </h3>
+
+                <div class="price">
+                    ₹2,500 / night
+                </div>
+
+                <p>
+                    Comfortable room for
+                    1–2 guests.
+                </p>
+
+                <button
+                    class="book-button"
+                    onclick="selectRoom('Standard Room')"
+                >
+                    Book Room
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- DELUXE -->
+
+        <div class="room-card">
+
+            <img
+                class="room-image"
+                src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=900&q=80"
+                alt="Deluxe Room"
+            >
+
+            <div class="room-content">
+
+                <h3>
+                    Deluxe Room
+                </h3>
+
+                <div class="price">
+                    ₹4,000 / night
+                </div>
+
+                <p>
+                    Spacious room with premium
+                    comfort and modern amenities.
+                </p>
+
+                <button
+                    class="book-button"
+                    onclick="selectRoom('Deluxe Room')"
+                >
+                    Book Room
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- LUXURY -->
+
+        <div class="room-card">
+
+            <img
+                class="room-image"
+                src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80"
+                alt="Luxury Suite"
+            >
+
+            <div class="room-content">
+
+                <h3>
+                    Luxury Suite
+                </h3>
+
+                <div class="price">
+                    ₹6,000 / night
+                </div>
+
+                <p>
+                    Premium suite with extra
+                    space and luxury amenities.
+                </p>
+
+                <button
+                    class="book-button"
+                    onclick="selectRoom('Luxury Suite')"
+                >
+                    Book Room
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BOOKING
+========================= -->
+
+<section id="booking">
+
+    <h2 class="section-title">
+        Make Your <span>Booking</span>
+    </h2>
+
+    <div class="booking-box">
+
+        <form
+            class="booking-form"
+            onsubmit="submitBooking(event)"
+        >
+
+            <input
+                type="text"
+                id="guestName"
+                placeholder="Your Name"
+                required
+            >
+
+            <input
+                type="email"
+                id="guestEmail"
+                placeholder="Email Address"
+                required
+            >
+
+            <input
+                type="date"
+                id="checkIn"
+                required
+            >
+
+            <input
+                type="date"
+                id="checkOut"
+                required
+            >
+
+            <select
+                id="roomType"
+                class="full"
+                required
+            >
+
+                <option value="">
+                    Select Room
+                </option>
+
+                <option value="Standard Room">
+                    Standard Room - ₹2,500
+                </option>
+
+                <option value="Deluxe Room">
+                    Deluxe Room - ₹4,000
+                </option>
+
+                <option value="Luxury Suite">
+                    Luxury Suite - ₹6,000
+                </option>
+
+            </select>
+
+            <button
+                class="booking-submit full"
+                type="submit"
+            >
+                Confirm Booking
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FACILITIES
+========================= -->
+
+<section id="facilities">
+
+    <h2 class="section-title">
+        Hotel <span>Facilities</span>
+    </h2>
+
+    <div class="facilities-grid">
+
+        <div class="facility">
+            <div class="facility-icon">🛏️</div>
+            Comfortable Beds
+        </div>
+
+        <div class="facility">
+            <div class="facility-icon">📶</div>
+            Free Wi-Fi
+        </div>
+
+        <div class="facility">
+            <div class="facility-icon">🏊</div>
+            Swimming Pool
+        </div>
+
+        <div class="facility">
+            <div class="facility-icon">🍽️</div>
+            Restaurant & Dining
+        </div>
+
+        <div class="facility">
+            <div class="facility-icon">🚗</div>
+            Parking
+        </div>
+
+        <div class="facility">
+            <div class="facility-icon">🧹</div>
+            Daily Housekeeping
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
-© 2026 Book My Stay. All Rights Reserved.
+
+    © 2026 Book My Stay.
+    All Rights Reserved.
+
 </footer>
 
-<script src="script.js"></script>
+
+
+<!-- =====================================================
+     STAYBOT OPEN BUTTON
+===================================================== -->
+
+<button
+    id="staybot-open"
+    type="button"
+    aria-label="Open StayBot"
+>
+    💬
+</button>
+
+
+
+<!-- =====================================================
+     STAYBOT
+===================================================== -->
+
+<div id="staybot-container">
+
+
+    <!-- HEADER -->
+
+    <div id="staybot-header">
+
+        <div class="staybot-title-area">
+
+            <div class="staybot-title">
+                ✨ StayBot
+            </div>
+
+            <div class="staybot-status">
+
+                <span class="staybot-status-dot"></span>
+
+                Online
+
+            </div>
+
+        </div>
+
+
+        <!-- THIS IS THE CLOSE BUTTON -->
+
+        <button
+            id="staybot-close"
+            type="button"
+            aria-label="Close StayBot"
+            title="Close"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+
+    <!-- MESSAGES -->
+
+    <div id="staybot-messages">
+
+
+        <!-- WELCOME -->
+
+        <div class="staybot-message staybot-bot">
+
+            <strong>Hello! 👋</strong>
+
+            <br><br>
+
+            Welcome to Book My Stay.
+
+            <br>
+
+            How can I help you?
+
+        </div>
+
+
+        <!-- SUGGESTION -->
+
+        <div class="staybot-message staybot-bot">
+
+            ⭐ <strong>Hotel facilities</strong>
+
+            <br><br>
+
+            Try asking:
+
+            <br>
+
+            "What are the room prices?"
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- BOTTOM -->
+
+    <div id="staybot-bottom">
+
+
+        <!-- INPUT -->
+
+        <div class="staybot-input-row">
+
+            <input
+                type="text"
+                id="staybot-input"
+                placeholder="Ask me something..."
+                autocomplete="off"
+            >
+
+            <button
+                id="staybot-send"
+                type="button"
+                aria-label="Send"
+            >
+                ➤
+            </button>
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <div class="staybot-quick-actions">
+
+            <button
+                type="button"
+                onclick="stayBotQuickMessage('rooms')"
+            >
+                🛏️ Rooms
+            </button>
+
+            <button
+                type="button"
+                onclick="stayBotQuickMessage('prices')"
+            >
+                💰 Prices
+            </button>
+
+            <button
+                type="button"
+                onclick="stayBotQuickMessage('booking')"
+            >
+                📋 Book
+            </button>
+
+            <button
+                type="button"
+                onclick="stayBotQuickMessage('facilities')"
+            >
+                ⭐ Facilities
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   BOOKING
+===================================================== */
+
+function selectRoom(roomName) {
+
+    document.getElementById("roomType").value = roomName;
+
+    document
+        .getElementById("booking")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+}
+
+
+function submitBooking(event) {
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("guestName").value;
+
+    const room =
+        document.getElementById("roomType").value;
+
+    alert(
+        "Thank you, " +
+        name +
+        "!\n\nYour " +
+        room +
+        " booking request has been received."
+    );
+
+}
+
+
+
+/* =====================================================
+   STAYBOT ELEMENTS
+===================================================== */
+
+const stayBotContainer =
+    document.getElementById("staybot-container");
+
+const stayBotOpen =
+    document.getElementById("staybot-open");
+
+const stayBotClose =
+    document.getElementById("staybot-close");
+
+const stayBotInput =
+    document.getElementById("staybot-input");
+
+const stayBotSend =
+    document.getElementById("staybot-send");
+
+const stayBotMessages =
+    document.getElementById("staybot-messages");
+
+
+
+/* =====================================================
+   OPEN CHAT
+===================================================== */
+
+stayBotOpen.addEventListener(
+    "click",
+    function() {
+
+        stayBotContainer.style.display =
+            "block";
+
+        stayBotOpen.style.display =
+            "none";
+
+        setTimeout(function() {
+
+            stayBotInput.focus();
+
+        }, 100);
+
+    }
+);
+
+
+
+/* =====================================================
+   CLOSE CHAT
+===================================================== */
+
+stayBotClose.addEventListener(
+    "click",
+    function() {
+
+        stayBotContainer.style.display =
+            "none";
+
+        stayBotOpen.style.display =
+            "flex";
+
+    }
+);
+
+
+
+/* =====================================================
+   ADD CHAT MESSAGE
+===================================================== */
+
+function stayBotAddMessage(
+    text,
+    type
+) {
+
+    const message =
+        document.createElement("div");
+
+    message.className =
+        "staybot-message " +
+        (
+            type === "user"
+            ? "staybot-user"
+            : "staybot-bot"
+        );
+
+    message.innerHTML = text;
+
+    stayBotMessages.appendChild(
+        message
+    );
+
+    stayBotMessages.scrollTop =
+        stayBotMessages.scrollHeight;
+}
+
+
+
+/* =====================================================
+   ROOMS
+===================================================== */
+
+function stayBotRoomsResponse() {
+
+    const html = `
+
+        🏨 <strong>Available Rooms</strong>
+
+        <br><br>
+
+        Here are our current room options:
+
+
+        <div class="staybot-room-card">
+
+            <div class="staybot-room-name">
+                Standard Room
+            </div>
+
+            <div class="staybot-room-price">
+                ₹2,500 / night
+            </div>
+
+            <div class="staybot-room-description">
+                Comfortable room for 1–2 guests.
+            </div>
+
+            <button
+                class="staybot-room-button"
+                onclick="selectRoom('Standard Room')"
+            >
+                View Room
+            </button>
+
+        </div>
+
+
+        <div class="staybot-room-card">
+
+            <div class="staybot-room-name">
+                Deluxe Room
+            </div>
+
+            <div class="staybot-room-price">
+                ₹4,000 / night
+            </div>
+
+            <div class="staybot-room-description">
+                Spacious room with premium
+                comfort and modern amenities.
+            </div>
+
+            <button
+                class="staybot-room-button"
+                onclick="selectRoom('Deluxe Room')"
+            >
+                View Room
+            </button>
+
+        </div>
+
+
+        <div class="staybot-room-card">
+
+            <div class="staybot-room-name">
+                Luxury Suite
+            </div>
+
+            <div class="staybot-room-price">
+                ₹6,000 / night
+            </div>
+
+            <div class="staybot-room-description">
+                Premium suite with extra space
+                and luxury amenities.
+            </div>
+
+            <button
+                class="staybot-room-button"
+                onclick="selectRoom('Luxury Suite')"
+            >
+                View Room
+            </button>
+
+        </div>
+
+    `;
+
+    stayBotAddMessage(
+        html,
+        "bot"
+    );
+}
+
+
+
+/* =====================================================
+   PRICES
+===================================================== */
+
+function stayBotPricesResponse() {
+
+    const html = `
+
+        💰 <strong>Room Prices</strong>
+
+        <br><br>
+
+        🛏️ <strong>Standard Room</strong>
+        <br>
+        ₹2,500 / night
+
+        <br><br>
+
+        🛏️ <strong>Deluxe Room</strong>
+        <br>
+        ₹4,000 / night
+
+        <br><br>
+
+        🏨 <strong>Luxury Suite</strong>
+        <br>
+        ₹6,000 / night
+
+        <br><br>
+
+        All prices are per room,
+        per night.
+
+    `;
+
+    stayBotAddMessage(
+        html,
+        "bot"
+    );
+}
+
+
+
+/* =====================================================
+   BOOKING
+===================================================== */
+
+function stayBotBookingResponse() {
+
+    const html = `
+
+        📋 <strong>How to book a room</strong>
+
+        <br><br>
+
+        1️⃣ Choose your preferred room.
+
+        <br><br>
+
+        2️⃣ Click <strong>Book Room</strong>.
+
+        <br><br>
+
+        3️⃣ Select your
+        check-in and check-out dates.
+
+        <br><br>
+
+        4️⃣ Enter your guest details.
+
+        <br><br>
+
+        5️⃣ Review your booking.
+
+        <br><br>
+
+        6️⃣ Confirm your reservation.
+
+        <br><br>
+
+        <button
+            class="staybot-room-button"
+            onclick="
+                document
+                .getElementById('booking')
+                .scrollIntoView({
+                    behavior:'smooth'
+                });
+            "
+        >
+            🏨 Go to Booking
+        </button>
+
+    `;
+
+    stayBotAddMessage(
+        html,
+        "bot"
+    );
+}
+
+
+
+/* =====================================================
+   FACILITIES
+===================================================== */
+
+function stayBotFacilitiesResponse() {
+
+    const html = `
+
+        ⭐ <strong>Hotel Facilities</strong>
+
+        <br><br>
+
+        🛏️ Comfortable beds
+
+        <br><br>
+
+        📶 Free Wi-Fi
+
+        <br><br>
+
+        🏊 Swimming pool
+
+        <br><br>
+
+        🍽️ Restaurant & dining
+
+        <br><br>
+
+        🚗 Parking
+
+        <br><br>
+
+        🧹 Daily housekeeping
+
+        <br><br>
+
+        🛎️ 24/7 reception
+
+    `;
+
+    stayBotAddMessage(
+        html,
+        "bot"
+    );
+}
+
+
+
+/* =====================================================
+   QUICK BUTTONS
+===================================================== */
+
+function stayBotQuickMessage(type) {
+
+
+    if (type === "rooms") {
+
+        stayBotAddMessage(
+            "Show me the available rooms.",
+            "user"
+        );
+
+        setTimeout(
+            stayBotRoomsResponse,
+            300
+        );
+
+    }
+
+
+    else if (type === "prices") {
+
+        stayBotAddMessage(
+            "What are the room prices?",
+            "user"
+        );
+
+        setTimeout(
+            stayBotPricesResponse,
+            300
+        );
+
+    }
+
+
+    else if (type === "booking") {
+
+        stayBotAddMessage(
+            "How can I book a room?",
+            "user"
+        );
+
+        setTimeout(
+            stayBotBookingResponse,
+            300
+        );
+
+    }
+
+
+    else if (type === "facilities") {
+
+        stayBotAddMessage(
+            "What facilities do you have?",
+            "user"
+        );
+
+        setTimeout(
+            stayBotFacilitiesResponse,
+            300
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   USER MESSAGE PROCESSING
+===================================================== */
+
+function stayBotSendMessage() {
+
+    const text =
+        stayBotInput.value.trim();
+
+    if (!text) {
+        return;
+    }
+
+
+    /* Show user's question */
+
+    stayBotAddMessage(
+        text,
+        "user"
+    );
+
+
+    /* Clear input */
+
+    stayBotInput.value = "";
+
+
+    const message =
+        text.toLowerCase();
+
+
+    setTimeout(
+        function() {
+
+
+            /* =========================
+               PRICE QUESTIONS
+            ========================= */
+
+            if (
+                message.includes("price") ||
+                message.includes("prices") ||
+                message.includes("cost") ||
+                message.includes("rate") ||
+                message.includes("how much") ||
+                message.includes("₹") ||
+                message.includes("rupee")
+            ) {
+
+                stayBotPricesResponse();
+
+            }
+
+
+            /* =========================
+               BOOKING QUESTIONS
+            ========================= */
+
+            else if (
+                message.includes("book") ||
+                message.includes("booking") ||
+                message.includes("reserve") ||
+                message.includes("reservation")
+            ) {
+
+                stayBotBookingResponse();
+
+            }
+
+
+            /* =========================
+               FACILITY QUESTIONS
+            ========================= */
+
+            else if (
+                message.includes("facility") ||
+                message.includes("facilities") ||
+                message.includes("amenity") ||
+                message.includes("amenities") ||
+                message.includes("wifi") ||
+                message.includes("pool") ||
+                message.includes("parking") ||
+                message.includes("restaurant")
+            ) {
+
+                stayBotFacilitiesResponse();
+
+            }
+
+
+            /* =========================
+               ROOM QUESTIONS
+            ========================= */
+
+            else if (
+                message.includes("room") ||
+                message.includes("rooms") ||
+                message.includes("suite") ||
+                message.includes("deluxe") ||
+                message.includes("standard")
+            ) {
+
+                stayBotRoomsResponse();
+
+            }
+
+
+            /* =========================
+               GREETING
+            ========================= */
+
+            else if (
+                message.includes("hello") ||
+                message.includes("hi") ||
+                message.includes("hey")
+            ) {
+
+                stayBotAddMessage(
+
+                    `
+                    👋 <strong>Hello!</strong>
+
+                    <br><br>
+
+                    Welcome to Book My Stay.
+
+                    <br><br>
+
+                    I can help you with:
+
+                    <br>
+                    🛏️ Rooms
+
+                    <br>
+                    💰 Prices
+
+                    <br>
+                    📋 Booking
+
+                    <br>
+                    ⭐ Facilities
+                    `,
+
+                    "bot"
+                );
+
+            }
+
+
+            /* =========================
+               DEFAULT
+            ========================= */
+
+            else {
+
+                stayBotAddMessage(
+
+                    `
+                    😊 I can help you with:
+
+                    <br><br>
+
+                    🛏️ <strong>Available rooms</strong>
+
+                    <br>
+
+                    💰 <strong>Room prices</strong>
+
+                    <br>
+
+                    📋 <strong>How to book</strong>
+
+                    <br>
+
+                    ⭐ <strong>Hotel facilities</strong>
+
+                    <br><br>
+
+                    Try asking:
+
+                    <br>
+
+                    "What are the room prices?"
+                    `,
+
+                    "bot"
+                );
+
+            }
+
+        },
+
+        350
+    );
+}
+
+
+
+/* =====================================================
+   SEND BUTTON
+===================================================== */
+
+stayBotSend.addEventListener(
+    "click",
+    stayBotSendMessage
+);
+
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+stayBotInput.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Enter") {
+
+            event.preventDefault();
+
+            stayBotSendMessage();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   INITIAL STATE
+===================================================== */
+
+stayBotContainer.style.display =
+    "none";
+
+stayBotOpen.style.display =
+    "flex";
+
+</script>
 
 </body>
 </html>
