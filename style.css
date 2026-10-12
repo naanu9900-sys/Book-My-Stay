@@ -383,3 +383,202 @@ footer{
     }
 
 }
+
+/* ===== BOOK MY STAY - BOOKING SUCCESS POPUP ===== */
+
+#bookingSuccessPopup {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(8, 5, 22, 0.82);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+    animation: bookingOverlayIn 0.3s ease;
+}
+
+.booking-success-card {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 460px;
+    padding: 42px 30px 32px;
+    overflow: hidden;
+    text-align: center;
+    color: #fff;
+    font-family: "Poppins", "Segoe UI", sans-serif;
+    background: linear-gradient(145deg, #21113d, #311052 55%, #17102c);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 26px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5),
+                0 0 35px rgba(236, 40, 142, 0.18);
+    animation: bookingCardIn 0.45s cubic-bezier(.2, .8, .2, 1);
+}
+
+.booking-success-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #ff3d8d, #a435ff, #ff3d8d);
+}
+
+.booking-success-close {
+    position: absolute;
+    top: 13px;
+    right: 16px;
+    width: 35px;
+    height: 35px;
+    color: #fff;
+    font-size: 27px;
+    line-height: 1;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+}
+
+.booking-success-close:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.booking-success-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 82px;
+    height: 82px;
+    margin: 0 auto 22px;
+    background: linear-gradient(135deg, #ff398a, #a52bff);
+    border: 5px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    box-shadow: 0 0 35px rgba(230, 45, 171, 0.3);
+    animation: bookingCheckIn 0.6s 0.15s both;
+}
+
+.booking-success-icon span {
+    color: white;
+    font-size: 43px;
+    font-weight: 700;
+}
+
+.booking-success-label {
+    margin: 0 0 10px;
+    color: #ff75ba;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.booking-success-card h2 {
+    margin: 0 0 20px;
+    color: #fff;
+    font-size: clamp(23px, 5vw, 30px);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.booking-success-thanks {
+    margin: 0 0 12px;
+    color: #eee3ff;
+    font-size: 16px;
+}
+
+.booking-success-thanks strong {
+    color: #ff78bc;
+    overflow-wrap: anywhere;
+}
+
+.booking-success-message {
+    margin: 0 auto;
+    color: #d7cce9;
+    font-size: 15px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.booking-success-message strong {
+    color: #fff;
+}
+
+.booking-success-divider {
+    width: 65px;
+    height: 3px;
+    margin: 23px auto;
+    background: linear-gradient(90deg, #ff398a, #a52bff);
+    border-radius: 10px;
+}
+
+.booking-success-footer {
+    margin: 0 0 25px;
+    color: #c8b8dc;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.booking-success-footer strong {
+    color: #ff78bc;
+}
+
+.booking-success-button {
+    width: 100%;
+    padding: 14px 20px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    background: linear-gradient(90deg, #ff398a, #c12bdf);
+    border: none;
+    border-radius: 13px;
+    box-shadow: 0 8px 22px rgba(221, 39, 157, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.booking-success-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(221, 39, 157, 0.4);
+}
+
+@keyframes bookingOverlayIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes bookingCardIn {
+    from { opacity: 0; transform: translateY(22px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes bookingCheckIn {
+    from { opacity: 0; transform: scale(0.5) rotate(-20deg); }
+    to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@media (max-width: 480px) {
+    .booking-success-card {
+        padding: 38px 22px 25px;
+        border-radius: 22px;
+    }
+
+    .booking-success-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .booking-success-icon span {
+        font-size: 36px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #bookingSuccessPopup,
+    .booking-success-card,
+    .booking-success-icon {
+        animation: none;
+    }
+}

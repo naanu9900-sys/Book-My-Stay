@@ -57,6 +57,7 @@
         }
 
         nav ul {
+
             list-style: none;
             display: flex;
             gap: 28px;
@@ -895,6 +896,7 @@
         <li><a href="#rooms">Rooms</a></li>
         <li><a href="#booking">Booking</a></li>
         <li><a href="#facilities">Facilities</a></li>
+        <li><a href="#location">Location</a></li>
     </ul>
 
 </nav>
@@ -1055,7 +1057,294 @@
 
     </div>
 
+
 </section>
+<!-- =========================
+     HOTEL LOCATION - GOOGLE MAP
+========================= -->
+
+<!-- =========================
+     PROFESSIONAL HOTEL LOCATION
+========================= -->
+
+<section id="location" class="hotel-location">
+
+    <div class="location-heading">
+        <span class="location-tag">FIND US</span>
+        <h2 class="section-title">
+            Visit <span>Our Location</span>
+        </h2>
+        <p>
+            Find us easily and plan your visit to Book My Stay.
+        </p>
+    </div>
+
+    <div class="location-card">
+
+        <!-- HOTEL ADDRESS -->
+        <div class="location-info">
+
+            <div class="location-icon">📍</div>
+
+            <h3>Book My Stay</h3>
+
+            <p class="location-description">
+                Your comfort, our priority.
+                We look forward to welcoming you.
+            </p>
+
+            <div class="address-details">
+                <div class="address-row">
+                    <span>📌</span>
+                    <div>
+                        <strong>Hotel Address</strong>
+                        <p>Bengaluru, Karnataka, India</p>
+                        <small>Temporary location — update when your
+                        hotel's address is finalized.</small>
+                    </div>
+                </div>
+
+                <div class="address-row">
+                    <span>🗺️</span>
+                    <div>
+                        <strong>Explore the Area</strong>
+                        <p>View nearby places and plan your route.</p>
+                    </div>
+                </div>
+            </div>
+
+            <a
+                class="directions-button"
+                href="https://www.google.com/maps/search/?api=1&query=hotels+Bengaluru+Karnataka+India"
+                target="_blank"
+                rel="noopener noreferrer">
+                Get Directions ↗
+            </a>
+
+            <p class="location-note">
+                Opens Google Maps in a new tab.
+            </p>
+
+        </div>
+
+        <!-- RESPONSIVE GOOGLE MAP -->
+        <div class="location-map">
+            <iframe
+                title="Map showing hotels in Bengaluru"
+                src="https://maps.google.com/maps?q=hotels%20in%20Bengaluru%2C%20Karnataka%2C%20India&z=12&output=embed"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+    </div>
+
+</section>
+
+<style>
+    /* HOTEL LOCATION SECTION */
+
+    .hotel-location {
+        padding: 85px 7%;
+        background:
+            radial-gradient(
+                circle at top right,
+                rgba(112, 44, 255, 0.16),
+                transparent 40%
+            ),
+            #101010;
+        color: #fff;
+    }
+
+    .location-heading {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 38px;
+    }
+
+    .location-tag {
+        display: inline-block;
+        padding: 7px 14px;
+        border-radius: 30px;
+        background: rgba(255, 61, 129, 0.13);
+        color: #ff5b98;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin-bottom: 12px;
+    }
+
+    .location-heading .section-title {
+        margin-bottom: 12px;
+    }
+
+    .location-heading > p {
+        color: #c8c8c8;
+        line-height: 1.7;
+    }
+
+    .location-card {
+        max-width: 1150px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: minmax(270px, 0.8fr) minmax(0, 1.4fr);
+        background: #1b1b24;
+        border: 1px solid rgba(255,255,255,0.09);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 55px rgba(0,0,0,0.3);
+    }
+
+    .location-info {
+        padding: 35px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .location-icon {
+        width: 55px;
+        height: 55px;
+        display: grid;
+        place-items: center;
+        border-radius: 17px;
+        background: rgba(255, 61, 129, 0.14);
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    .location-info h3 {
+        font-size: 27px;
+        margin-bottom: 10px;
+    }
+
+    .location-description {
+        color: #c8c8d0;
+        line-height: 1.7;
+        margin-bottom: 25px;
+    }
+
+    .address-details {
+        width: 100%;
+        display: grid;
+        gap: 22px;
+        margin-bottom: 28px;
+    }
+
+    .address-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 13px;
+    }
+
+    .address-row > span {
+        font-size: 21px;
+    }
+
+    .address-row strong {
+        display: block;
+        margin-bottom: 7px;
+        color: #ff6a9f;
+    }
+
+    .address-row p {
+        color: #f0f0f0;
+        line-height: 1.6;
+        overflow-wrap: anywhere;
+    }
+
+    .address-row small {
+        display: block;
+        color: #aaa;
+        line-height: 1.5;
+        margin-top: 6px;
+    }
+
+    .directions-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 14px 23px;
+        border-radius: 30px;
+        background: linear-gradient(135deg, #ff414f, #ff2383);
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .directions-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(255, 45, 130, 0.28);
+    }
+
+    .location-note {
+        color: #999;
+        font-size: 12px;
+        margin-top: 12px;
+    }
+
+    .location-map {
+        min-height: 430px;
+        background: #252530;
+    }
+
+    .location-map iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 430px;
+        border: 0;
+    }
+
+    /* TABLETS AND MOBILE */
+
+    @media (max-width: 800px) {
+        .hotel-location {
+            padding: 65px 5%;
+        }
+
+        .location-card {
+            grid-template-columns: 1fr;
+        }
+
+        .location-info {
+            padding: 28px;
+        }
+
+        .location-map,
+        .location-map iframe {
+            min-height: 350px;
+            height: 350px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hotel-location {
+            padding: 50px 16px;
+        }
+
+        .location-info {
+            padding: 22px;
+        }
+
+        .location-info h3 {
+            font-size: 23px;
+        }
+
+        .location-map,
+        .location-map iframe {
+            min-height: 290px;
+            height: 290px;
+        }
+
+        .directions-button {
+            width: 100%;
+        }
+    }
+</style>
 
 
 <!-- =========================
@@ -1383,25 +1672,78 @@ function selectRoom(roomName) {
         });
 }
 
-
 function submitBooking(event) {
-
     event.preventDefault();
 
-    const name =
-        document.getElementById("guestName").value;
+    const name = document.getElementById("guestName").value.trim();
+    const email = document.getElementById("guestEmail").value.trim();
+    const checkIn = document.getElementById("checkIn").value;
+    const checkOut = document.getElementById("checkOut").value;
+    const room = document.getElementById("roomType").value;
 
-    const room =
-        document.getElementById("roomType").value;
+    if (!name || !email || !checkIn || !checkOut || !room) {
+        alert("Please fill in all booking details.");
+        return;
+    }
 
-    alert(
-        "Thank you, " +
-        name +
-        "!\n\nYour " +
-        room +
-        " booking request has been received."
+    // Use local calendar dates, avoiding UTC date conversion problems.
+    function parseDate(value) {
+        const parts = value.split("-").map(Number);
+        return new Date(parts[0], parts[1] - 1, parts[2]);
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const arrival = parseDate(checkIn);
+    const departure = parseDate(checkOut);
+
+    if (arrival < today) {
+        alert("Check-in date cannot be in the past. Please choose today or a future date.");
+        return;
+    }
+
+    if (departure <= arrival) {
+        alert("Check-out must be at least one day after check-in.");
+        return;
+    }
+
+    const prices = {
+        "Standard Room": 2500,
+        "Deluxe Room": 4000,
+        "Luxury Suite": 6000
+    };
+
+    const nights = Math.round(
+        (departure - arrival) / (1000 * 60 * 60 * 24)
     );
 
+    const booking = {
+        name,
+        email,
+        checkIn,
+        checkOut,
+        room,
+        nights,
+        total: nights * prices[room],
+        bookingId: "BMS" + Date.now()
+    };
+
+    sessionStorage.setItem("bookMyStayBooking", JSON.stringify(booking));
+
+    window.location.href = "success.html";
+}
+
+function escapeBookingText(value) {
+    return String(value).replace(/[&<>"']/g, function(character) {
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        }[character];
+    });
 }
 
 
@@ -2064,6 +2406,52 @@ stayBotContainer.style.display =
 
 stayBotOpen.style.display =
     "flex";
+    // Prevent past check-in dates and keep checkout after check-in.
+const checkInInput = document.getElementById("checkIn");
+const checkOutInput = document.getElementById("checkOut");
+
+function formatLocalDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+}
+
+function updateBookingDateLimits() {
+    const today = formatLocalDate(new Date());
+
+    checkInInput.min = today;
+
+    if (checkInInput.value && checkInInput.value >= today) {
+        const nextDay = new Date(
+            ...checkInInput.value.split("-").map(Number)
+        );
+
+        // Construct the next date correctly using local calendar values.
+        const parts = checkInInput.value.split("-").map(Number);
+        const localCheckIn = new Date(parts[0], parts[1] - 1, parts[2]);
+        localCheckIn.setDate(localCheckIn.getDate() + 1);
+
+        checkOutInput.min = formatLocalDate(localCheckIn);
+    } else {
+        checkOutInput.min = today;
+    }
+}
+
+checkInInput.addEventListener("change", function () {
+    updateBookingDateLimits();
+
+    if (
+        checkInInput.value &&
+        checkOutInput.value &&
+        checkOutInput.value <= checkInInput.value
+    ) {
+        checkOutInput.value = "";
+    }
+});
+
+updateBookingDateLimits();
 
 </script>
 

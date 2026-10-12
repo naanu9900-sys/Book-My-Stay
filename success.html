@@ -3,158 +3,254 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Booking Confirmed</title>
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>Booking Confirmed | Book My Stay</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-    font-family:'Poppins',sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    overflow:hidden;
-
-    background:linear-gradient(-45deg,#0f2027,#2c3e50,#6a11cb,#ff4fd8,#4f8dff);
-    background-size:400% 400%;
-    animation:gradient 12s ease infinite;
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background: linear-gradient(135deg, #10091d, #32104f, #110b24);
 }
 
-@keyframes gradient{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
+.card {
+    width: 100%;
+    max-width: 600px;
+    padding: 36px;
+    text-align: center;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
 }
 
-.card{
-    width:430px;
-    padding:40px 35px;
-    text-align:center;
-
-    background:rgba(255,255,255,.12);
-    backdrop-filter:blur(18px);
-    border:1px solid rgba(255,255,255,.25);
-    border-radius:30px;
-
-    box-shadow:
-    0 15px 40px rgba(0,0,0,.35),
-    inset 0 0 20px rgba(255,255,255,.08);
-
-    animation:float 4s ease-in-out infinite;
+.check {
+    width: 82px;
+    height: 82px;
+    margin: 0 auto 20px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #16a765;
+    font-size: 46px;
 }
 
-@keyframes float{
-    0%,100%{
-        transform:translateY(0);
+h1 {
+    font-size: clamp(27px, 5vw, 38px);
+    margin-bottom: 12px;
+}
+
+h1 span {
+    color: #ff4b96;
+}
+
+.subtitle {
+    color: #ddd;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.details {
+    text-align: left;
+    background: rgba(0,0,0,0.22);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.details h2 {
+    font-size: 19px;
+    margin-bottom: 15px;
+    color: #ff70aa;
+}
+
+.detail {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.detail:last-child {
+    border-bottom: none;
+}
+
+.detail span:first-child {
+    color: #ccc;
+}
+
+.detail span:last-child {
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.total {
+    color: #ffe16b;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.note {
+    font-size: 13px;
+    color: #bbb;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 22px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #ff414e, #ff278c);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn.secondary {
+    background: rgba(255,255,255,0.14);
+}
+
+.error {
+    color: #ffd1d1;
+    line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 24px 18px;
     }
-    50%{
-        transform:translateY(-12px);
+
+    .detail {
+        font-size: 14px;
     }
 }
 
-.check{
-    width:90px;
-    height:90px;
-    margin:auto;
-    border-radius:50%;
-    background:linear-gradient(135deg,#00e676,#00c853);
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:48px;
-    box-shadow:0 0 25px rgba(0,255,120,.6);
-}
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
 
-h1{
-    margin-top:25px;
-    font-family:'Great Vibes',cursive;
-    font-size:62px;
-    color:white;
-    text-shadow:
-    0 0 15px #ff4fd8,
-    0 0 25px #4f8dff;
-}
+    .card, .details {
+        background: white;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
 
-.subtitle{
-    margin-top:10px;
-    color:#ffe8ff;
-    font-size:20px;
-    font-weight:600;
-}
+    .subtitle, .note, .detail span:first-child {
+        color: #444;
+    }
 
-.message{
-    margin-top:20px;
-    color:white;
-    font-size:17px;
-    line-height:1.8;
-}
-
-.btn{
-    display:inline-block;
-    margin-top:35px;
-    padding:15px 45px;
-    text-decoration:none;
-    color:white;
-    font-weight:bold;
-    font-size:18px;
-    border-radius:40px;
-
-    background:linear-gradient(90deg,#ff4fd8,#4f8dff);
-
-    transition:.4s;
-}
-
-.btn:hover{
-    transform:translateY(-5px) scale(1.05);
-    box-shadow:0 0 25px #ff4fd8;
-}
-
-.footer{
-    margin-top:25px;
-    color:#ddd;
-    font-size:14px;
+    .actions {
+        display: none;
+    }
 }
 </style>
-
 </head>
 
 <body>
+<main class="card">
+    <div class="check" aria-hidden="true">✓</div>
 
-<div class="card">
+    <h1>Booking <span>Confirmed!</span></h1>
+    <p class="subtitle">
+        Thank you for choosing Book My Stay.
+        Here are your booking details.
+    </p>
 
-<div class="check">✓</div>
+    <section class="details" id="bookingDetails">
+        <h2>Your Reservation</h2>
+        <p class="error">Loading your booking details...</p>
+    </section>
 
-<h1>Your Stay is Confirmed</h1>
+    <p class="note">
+        This page confirms the booking details entered in this browser.
+        It does not by itself create a database reservation or process payment.
+    </p>
 
-<p class="subtitle">
-Payment Completed Successfully
-</p>
+    <div class="actions">
+        <a class="btn" href="index.html">Back to Home</a>
+        <button class="btn secondary" onclick="window.print()">Print Details</button>
+    </div>
+</main>
 
-<p class="message">
-Thank you for choosing <b>Book My Stay</b>.<br><br>
+<script>
+const container = document.getElementById("bookingDetails");
+let booking = null;
 
-Your reservation has been successfully confirmed.<br>
-We look forward to welcoming you and ensuring you have a relaxing, comfortable, and unforgettable stay.
-</p>
+try {
+    booking = JSON.parse(
+        sessionStorage.getItem("bookMyStayBooking") || "null"
+    );
+} catch (error) {
+    booking = null;
+}
 
-<a href="index.html" class="btn">
-🏠 Return to Home
-</a>
+if (!booking) {
+    container.innerHTML = `
+        <h2>No Booking Details Found</h2>
+        <p class="error">
+            Please return to the booking form and submit your details again.
+        </p>
+    `;
+} else {
+    // Use textContent to safely display user-entered values.
+    const rows = [
+        ["Booking ID", booking.bookingId],
+        ["Guest Name", booking.name],
+        ["Email", booking.email],
+        ["Room", booking.room],
+        ["Check-in", booking.checkIn],
+        ["Check-out", booking.checkOut],
+        ["Number of Nights", booking.nights],
+        ["Total Price", "₹" + Number(booking.total).toLocaleString("en-IN")]
+    ];
 
-<div class="footer">
-© 2026 Book My Stay • Wishing You a Pleasant Journey
-</div>
+    container.replaceChildren();
 
-</div>
+    const heading = document.createElement("h2");
+    heading.textContent = "Your Reservation";
+    container.appendChild(heading);
 
+    rows.forEach(([label, value]) => {
+        const row = document.createElement("div");
+        row.className = "detail";
+
+        const left = document.createElement("span");
+        left.textContent = label;
+
+        const right = document.createElement("span");
+        right.textContent = value ?? "";
+
+        if (label === "Total Price") {
+            right.className = "total";
+        }
+
+        row.append(left, right);
+        container.appendChild(row);
+    });
+}
+</script>
 </body>
 </html>
